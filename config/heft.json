@@ -10,6 +10,15 @@
           }
         }
       }
+    },
+    "test": {
+      "tasksByName": {
+        "jest": {
+          "taskPlugin": {
+            "pluginPackage": "@rushstack/heft-jest-plugin"
+          }
+        }
+      }
     }
   }
 }

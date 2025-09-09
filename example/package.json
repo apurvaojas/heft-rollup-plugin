@@ -1,0 +1,14 @@
+{
+  "name": "heft-rollup-plugin-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "heft build",
+    "test": "heft test"
+  },
+  "devDependencies": {
+    "@rushstack/heft": "^0.74.3",
+    "rollup": "^4.0.0",
+    "typescript": "~5.4.2"
+  }
+}
