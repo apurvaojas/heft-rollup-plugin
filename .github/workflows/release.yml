@@ -1,9 +1,12 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g., v1.0.0)'
+        required: true
+        type: string
 
 jobs:
   release:
@@ -33,7 +36,7 @@ jobs:
     
     - name: Get tag version
       id: tag_version
-      run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      run: echo "version=$(echo "${{ github.event.inputs.tag }}" | sed 's/^v//')" >> $GITHUB_OUTPUT
     
     - name: Update package version
       run: npm version ${{ steps.tag_version.outputs.version }} --no-git-tag-version
@@ -50,7 +53,8 @@ jobs:
     - name: Generate release notes
       id: release_notes
       run: |
-        PREVIOUS_TAG=$(git describe --tags --abbrev=0 ${{ github.ref }}^)
+        # Get previous tag
+        PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
         echo "previous_tag=${PREVIOUS_TAG}" >> $GITHUB_OUTPUT
         
         # Generate release notes from conventional commits
@@ -58,11 +62,16 @@ jobs:
         echo "notes<<EOF" >> $GITHUB_OUTPUT
         echo "${RELEASE_NOTES}" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create Git tag
+      run: |
+        git tag ${{ github.event.inputs.tag }}
+        git push origin ${{ github.event.inputs.tag }}
     
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ github.ref }}
+        tag_name: ${{ github.event.inputs.tag }}
         name: Release ${{ steps.tag_version.outputs.version }}
         body: ${{ steps.release_notes.outputs.notes }}
         draft: false

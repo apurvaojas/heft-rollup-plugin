@@ -1,8 +1,7 @@
 name: Release Beta
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   release-beta:
@@ -65,7 +64,7 @@ jobs:
           Beta release from main branch
           
           This is an automated beta release published to npm with the `next` tag.
-          Install with: `npm install @apurvaojas/heft-rollup-plugin@next`
+          Install with: `npm install heft-rollup-plugin@next`
         draft: false
         prerelease: true
       env:

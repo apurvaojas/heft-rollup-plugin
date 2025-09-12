@@ -1,2 +1,6 @@
+#!/bin/sh
+echo "Running pre-commit checks..."
+echo "Note: Please use conventional commit format (feat:, fix:, etc.)"
+
 npm run lint
 npm test
