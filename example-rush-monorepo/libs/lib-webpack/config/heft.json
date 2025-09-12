@@ -1,0 +1,17 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/heft/v0/heft.schema.json",
+    "phasesByName": {
+        "build": {
+            "phaseDescription": "Build phase for lib-webpack",
+            "tasksByName": {
+                "default": {
+                    "taskDependencies": [],
+                    "taskPlugin": {
+                        "pluginPackage": "@rushstack/heft-webpack5-plugin",
+                        "pluginName": "webpack5-plugin"
+                    }
+                }
+            }
+        }
+    }
+}

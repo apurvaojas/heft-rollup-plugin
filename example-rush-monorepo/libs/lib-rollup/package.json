@@ -1,0 +1,21 @@
+{
+    "name": "@example/lib-rollup",
+    "version": "0.1.0",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "heft build",
+        "build:rollup": "rollup -c ../../rollup.config.lib-rollup.js",
+        "clean": "rm -rf dist"
+    },
+    "devDependencies": {
+        "@rushstack/heft": "^0.74.3"
+    },
+    "dependencies": {
+        "heft-rollup-plugin": "file:../../../"
+    }
+}

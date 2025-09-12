@@ -1,0 +1,17 @@
+{
+    "name": "@example/lib-webpack",
+    "version": "0.1.0",
+    "main": "dist/index.umd.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "heft build",
+        "build:webpack": "node ../../scripts/build-lib-webpack.js",
+        "clean": "rm -rf dist"
+    },
+    "devDependencies": {
+        "@rushstack/heft": "^0.74.3",
+        "@rushstack/heft-webpack5-plugin": "^0.11.41"
+    }
+}

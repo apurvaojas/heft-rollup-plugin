@@ -1,0 +1,16 @@
+{
+    "name": "example-rush-monorepo",
+    "private": true,
+    "devDependencies": {
+        "@rushstack/heft": "^0.74.3",
+        "@rushstack/heft-webpack5-plugin": "^0.11.41",
+        "rollup": "^3.30.0",
+        "webpack": "^5.88.0",
+        "webpack-cli": "^5.1.0",
+        "source-map-explorer": "^2.6.0",
+        "react-dev-utils": "^12.0.0"
+    },
+    "scripts": {
+        "install": "echo 'Run rush update at monorepo root'"
+    }
+}

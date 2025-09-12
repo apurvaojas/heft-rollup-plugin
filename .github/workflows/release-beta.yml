@@ -55,17 +55,3 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     
-    - name: Create GitHub release
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: v${{ steps.beta_version.outputs.version }}
-        name: v${{ steps.beta_version.outputs.version }}
-        body: |
-          Beta release from main branch
-          
-          This is an automated beta release published to npm with the `next` tag.
-          Install with: `npm install heft-rollup-plugin@next`
-        draft: false
-        prerelease: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

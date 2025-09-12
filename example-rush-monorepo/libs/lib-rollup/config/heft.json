@@ -1,0 +1,17 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/heft/v0/heft.schema.json",
+    "phasesByName": {
+        "build": {
+            "phaseDescription": "Build phase for lib-rollup",
+            "tasksByName": {
+                "default": {
+                    "taskDependencies": [],
+                    "taskPlugin": {
+                        "pluginPackage": "heft-rollup-plugin",
+                        "pluginName": "rollup-plugin"
+                    }
+                }
+            }
+        }
+    }
+}

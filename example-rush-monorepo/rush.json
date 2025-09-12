@@ -1,0 +1,23 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+    "rushVersion": "5.158.1",
+    "pnpmVersion": "10.16.0",
+    "nodeSupportedVersionRange": ">=14.0.0",
+    "projects": [
+        {
+            "packageName": "@example/app",
+            "projectFolder": "apps/example-app",
+            "reviewCategory": "apps"
+        },
+        {
+            "packageName": "@example/lib-rollup",
+            "projectFolder": "libs/lib-rollup",
+            "reviewCategory": "libs"
+        },
+        {
+            "packageName": "@example/lib-webpack",
+            "projectFolder": "libs/lib-webpack",
+            "reviewCategory": "libs"
+        }
+    ]
+}
