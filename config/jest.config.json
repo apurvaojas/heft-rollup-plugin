@@ -1,0 +1,5 @@
+{
+  "testMatch": ["<rootDir>/lib/**/*.test.js"],
+  "moduleFileExtensions": ["js", "json"],
+  "testEnvironment": "node"
+}

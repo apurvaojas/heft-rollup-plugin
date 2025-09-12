@@ -1,0 +1,28 @@
+# Build inputs
+src/
+temp/
+.heft/
+
+# Config files
+*.config.js
+*.config.ts
+tsconfig.json
+jest.config.js
+eslint.config.js
+
+# Development files
+.git/
+.vscode/
+*.log
+*.map
+
+# Dependencies
+node_modules/
+
+# Test output
+coverage/
+lib-commonjs/
+
+# Only publish dist/ and lib/
+# The "dist/" folder contains API Extractor's generated *.d.ts rollups
+# The "lib/" folder contains the compiled JavaScript output
