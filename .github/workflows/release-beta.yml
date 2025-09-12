@@ -1,0 +1,72 @@
+name: Release Beta
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  release-beta:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'chore(release)')"
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        registry-url: 'https://registry.npmjs.org'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Test
+      run: npm test
+    
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+    
+    - name: Get current version
+      id: current_version
+      run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+    
+    - name: Generate beta version
+      id: beta_version
+      run: |
+        CURRENT_VERSION=${{ steps.current_version.outputs.version }}
+        TIMESTAMP=$(date +%Y%m%d%H%M%S)
+        BETA_VERSION="${CURRENT_VERSION}-beta.${TIMESTAMP}"
+        echo "version=${BETA_VERSION}" >> $GITHUB_OUTPUT
+    
+    - name: Update version to beta
+      run: npm version ${{ steps.beta_version.outputs.version }} --no-git-tag-version
+    
+    - name: Publish beta to npm
+      run: npm publish --tag next --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ steps.beta_version.outputs.version }}
+        name: v${{ steps.beta_version.outputs.version }}
+        body: |
+          Beta release from main branch
+          
+          This is an automated beta release published to npm with the `next` tag.
+          Install with: `npm install @apurvaojas/heft-rollup-plugin@next`
+        draft: false
+        prerelease: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

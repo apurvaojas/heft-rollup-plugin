@@ -101,6 +101,8 @@ rollupPlugin.hooks.onConfigure.tapPromise('MyPlugin', async (configuration) => {
 
 ## Development
 
+### Setup
+
 ```bash
 # Install dependencies
 npm install
@@ -110,6 +112,67 @@ npm run build
 
 # Test the plugin
 npm test
+
+# Lint the code
+npm run lint
+```
+
+### Contributing
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) for commit messages and automatic versioning.
+
+#### Commit Message Format
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Common types:
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `build`: Changes that affect the build system or external dependencies
+- `ci`: Changes to CI configuration files and scripts
+- `chore`: Other changes that don't modify src or test files
+
+#### Making Commits
+
+You can use commitizen for interactive commit messages:
+
+```bash
+npm run commit
+```
+
+Or write conventional commit messages manually:
+
+```bash
+git commit -m "feat: add new rollup plugin feature"
+```
+
+### Release Process
+
+This project uses automated releases:
+
+- **Beta releases**: Automatically published to npm with `@next` tag when changes are merged to `main` branch
+- **Stable releases**: Published when a version tag is created using semantic-release
+- **Version bumping**: Automatic based on conventional commit history
+- **Release notes**: Auto-generated from conventional commits
+
+#### Manual Release
+
+To trigger a release manually:
+
+```bash
+# This will analyze commits and create a release if needed
+npm run release
 ```
 
 ## License
