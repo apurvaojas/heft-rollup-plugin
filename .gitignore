@@ -38,9 +38,6 @@ coverage/
 .env.test.local
 .env.production.local
 
-# Package manager files
-package-lock.json
-yarn.lock
 
 # Release artifacts
 *.tgz
