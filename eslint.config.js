@@ -1,12 +1,30 @@
-// This is a workaround for https://github.com/eslint/eslint/issues/3458
-require('@rushstack/heft/includes/eslint-config-heft.js');
+const { FlatCompat } = require('@eslint/eslintrc');
+const js = require('@eslint/js');
 
-module.exports = {
-  extends: ['@rushstack/eslint-config/profile/node'],
-  parserOptions: { tsconfigRootDir: __dirname },
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended
+});
 
-  rules: {
-    // This rule doesn't work correctly with TypeScript overloads
-    '@typescript-eslint/unified-signatures': 'off'
+module.exports = [
+  {
+    files: ['src/**/*.ts'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      parser: require('@typescript-eslint/parser'),
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname
+      }
+    },
+    plugins: {
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin')
+    },
+    rules: {
+      'no-console': 'warn',
+      'prefer-const': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }]
+    }
   }
-};
+];

@@ -1,5 +1,5 @@
 {
-  "name": "@apurvaojas/heft-rollup-plugin",
+  "name": "heft-rollup-plugin",
   "version": "0.1.0",
   "description": "Heft plugin for Rollup",
   "repository": {
@@ -18,7 +18,7 @@
     "build": "heft build --clean && mkdir -p lib/schemas && cp src/schemas/*.json lib/schemas/",
     "test": "heft test --clean",
     "start": "heft test --clean --watch",
-    "lint": "heft run --only lint || npx eslint src --ext .ts",
+    "lint": "npx eslint src --ext .ts",
     "lint:fix": "npx eslint src --ext .ts --fix",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/eslintrc": "^3.3.1",
     "@rushstack/heft": "^0.74.3",
     "@rushstack/heft-jest-plugin": "^0.16.12",
     "@rushstack/heft-typescript-plugin": "^0.9.12",
@@ -47,6 +48,8 @@
     "@semantic-release/github": "^11.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^18.15.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "cz-conventional-changelog": "^3.3.0",

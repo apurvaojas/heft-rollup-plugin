@@ -2,16 +2,15 @@
 // See LICENSE in the project root for license information.
 
 import { AsyncParallelHook, AsyncSeriesBailHook, AsyncSeriesHook, AsyncSeriesWaterfallHook } from 'tapable';
-import { FileError, InternalError, LegacyAdapters } from '@rushstack/node-core-library';
+import { InternalError } from '@rushstack/node-core-library';
 import type {
   HeftConfiguration,
   IHeftTaskSession,
   IHeftTaskPlugin,
-  IHeftTaskRunHookOptions,
   IScopedLogger,
   IHeftTaskRunIncrementalHookOptions
 } from '@rushstack/heft';
-import type { RollupOptions, RollupBuild, RollupWatcher, RollupWatchOptions } from 'rollup';
+import type { RollupBuild, RollupWatcher, RollupWatchOptions } from 'rollup';
 
 import {
   type IRollupConfiguration,
@@ -72,7 +71,7 @@ export default class RollupPlugin implements IHeftTaskPlugin<IRollupPluginOption
       );
     }
 
-    taskSession.hooks.run.tapPromise(PLUGIN_NAME, async (runOptions: IHeftTaskRunHookOptions) => {
+    taskSession.hooks.run.tapPromise(PLUGIN_NAME, async () => {
       await this._runRollupAsync(taskSession, heftConfiguration, options);
     });
 
@@ -170,7 +169,7 @@ export default class RollupPlugin implements IHeftTaskPlugin<IRollupPluginOption
     taskSession: IHeftTaskSession,
     heftConfiguration: HeftConfiguration,
     options: IRollupPluginOptions,
-    requestRun: () => void
+    _requestRun: () => void
   ): Promise<void> {
     // Save a handle to the original promise, since the this-scoped promise will be replaced whenever
     // the compilation completes.

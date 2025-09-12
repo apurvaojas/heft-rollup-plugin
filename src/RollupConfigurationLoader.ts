@@ -10,7 +10,6 @@ import type {
   IRollupConfigurationFnEnvironment,
   IRollupPluginAccessorHooks
 } from './shared';
-import { STAGE_LOAD_LOCAL_CONFIG } from './shared';
 
 export interface IRollupConfigurationLoaderSettings {
   taskSession: IHeftTaskSession;

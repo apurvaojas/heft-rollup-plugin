@@ -5,7 +5,7 @@ A Heft plugin for Rollup, similar to the official heft-webpack5-plugin.
 ## Installation
 
 ```bash
-npm install @apurvaojas/heft-rollup-plugin rollup --save-dev
+npm install heft-rollup-plugin rollup --save-dev
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ Add the plugin to your `config/heft.json`:
   
   "heftPlugins": [
     {
-      "plugin": "@apurvaojas/heft-rollup-plugin"
+      "plugin": "heft-rollup-plugin"
     }
   ]
 }
@@ -48,7 +48,7 @@ You can configure the plugin by adding options in your heft.json:
 {
   "heftPlugins": [
     {
-      "plugin": "@apurvaojas/heft-rollup-plugin",
+      "plugin": "heft-rollup-plugin",
       "options": {
         "configurationPath": "./custom-rollup.config.js",
         "devConfigurationPath": "./rollup.dev.config.js"
@@ -84,7 +84,7 @@ The plugin will look for configuration files in this order:
 The plugin provides hooks for customization:
 
 ```typescript
-import type { IRollupPluginAccessor } from '@apurvaojas/heft-rollup-plugin';
+import type { IRollupPluginAccessor } from 'heft-rollup-plugin';
 
 // Access the plugin via Heft
 const rollupPlugin: IRollupPluginAccessor = heftSession.requestPlugin('rollup-plugin');
